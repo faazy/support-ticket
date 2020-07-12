@@ -90,15 +90,9 @@
         </div>
     </div>
 </div>
-<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="ticket-detailed-ui"
-     aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-body">
-            </div>
-        </div>
-    </div>
-</div>
+
+@include('shared.ticket-modal-view')
+
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
@@ -138,6 +132,7 @@
                 .done(data => {
                     $('#ticket-detailed-ui')
                         .find('.modal-body')
+                        .empty()
                         .append(data.ticket);
 
                     $('#ticket-detailed-ui').modal('show');

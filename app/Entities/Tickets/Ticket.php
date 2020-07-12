@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-/**
- * @property mixed created_at
- */
 class Ticket extends Model
 {
     use Notifiable;
@@ -28,6 +25,8 @@ class Ticket extends Model
     ];
 
     protected $with = ['replies'];
+
+    protected $appends = ['is_read'];
 
     public static function boot()
     {
@@ -49,6 +48,17 @@ class Ticket extends Model
     public function scopeStatus(Builder $query, $status)
     {
         $query->where('status', $status);
+    }
+
+
+    public function scopeUnread(Builder $query)
+    {
+        $query->whereNull('read_at');
+    }
+
+    public function getIsReadAttribute()
+    {
+        return !is_null($this->read_at);
     }
 
 }

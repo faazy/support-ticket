@@ -67,7 +67,7 @@
                         </thead>
                         <tbody>
                         @foreach ($tickets as $ticket)
-                            <tr class="{{$ticket->status == \App\Entities\Tickets\Ticket::STATUS_PENDING ?'active':''}}">
+                            <tr class="{{!$ticket->is_read ?'active':''}}">
                                 <td>{{$ticket->ticket_ref}}</td>
                                 <td>{{$ticket->customer_name}}</td>
                                 <td>{{$ticket->email}}</td>
@@ -81,7 +81,8 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <button title="View Details" class="btn btn-info">
+                                    <button title="View Details" class="btn btn-info detailed-view"
+                                            data-ticket-id="{{$ticket->id}}">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                     <a title="Add reply to this ticket" class="btn btn-primary"
@@ -106,6 +107,38 @@
             </div>
         </div>
     </div>
-
+    @include('shared.ticket-modal-view')
     {{--End Page Content--}}
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+
+        $('.detailed-view').click(function () {
+            const id = $(this).data('ticket-id');
+
+            if (id) {
+                $.get(`/tickets/${id}`)
+                    .done(data => {
+                        const modal = $('#ticket-detailed-ui');
+
+                        modal.find('.modal-body')
+                            .empty()
+                            .append(data.ticket);
+
+                        modal.modal('show');
+                    }).fail(error => {
+                    const {message} = error.responseJSON;
+                    Swal.fire(
+                        'Oops...!',
+                        message,
+                        'error'
+                    );
+
+                });
+            }
+        });
+
+
+    </script>
+@endpush

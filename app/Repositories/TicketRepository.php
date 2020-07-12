@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 use App\Entities\Tickets\Ticket;
 use App\Repositories\Core\BaseRepository;
+use Carbon\Carbon;
 use Closure;
 use Exception;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -63,5 +64,19 @@ class TicketRepository extends BaseRepository
         }
 
         throw new Exception('Ticket Unique reference couldn\'t generate.');
+    }
+
+    /**
+     * Mark ticket as Read or view status
+     *
+     * @param Ticket $ticket
+     * @return Ticket
+     */
+    public function markAsRead(Ticket $ticket)
+    {
+        $ticket->read_at = Carbon::now();
+        $ticket->save();
+
+        return $ticket;
     }
 }

@@ -6,6 +6,12 @@
             </div>
         @endif
 
+        @if (session('warning'))
+            <div class="alert alert-warning" role="alert">
+                <i class="fas fa-thumbs-down"></i> {{ session('warning') }}
+            </div>
+        @endif
+
         @if (session('error'))
             <div class="alert alert-danger" role="alert">
                 <i class="fas fa-thumbs-down"></i> {{ session('error') }}

@@ -50,37 +50,46 @@
 <div class="row">
     <div class="col-md-12">
         <!-- The time line -->
+
         <div class="timeline">
-        @php($replies = $ticket->replies->groupBy('date'))
+        @if (!$ticket->replies->isEmpty())
+            @php($replies = $ticket->replies->groupBy('date'))
 
-        @foreach($replies as $date => $reply)
+            @foreach($replies as $date => $reply)
 
-            <!-- timeline time label -->
-                <div class="time-label">
-                    <span class="bg-red">{{\Carbon\Carbon::parse($date)->format('d M, Y')}}</span>
-                </div>
-                <!-- /.timeline-label -->
-                <!-- timeline item -->
-                <!-- timeline item -->
-                @foreach($reply as $item)
-                    <div>
-                        <i class="fas fa-comments bg-gradient-blue"></i>
-                        <div class="timeline-item">
-                            <span class="time"><i class="fas fa-clock"></i> {{$item->created_at->diffForHumans()}}</span>
-                            <h3 class="timeline-header">
-                                <a href="#">{{$item->agent->name}}</a> replied on this Ticket</h3>
-                            <div class="timeline-body">
-                                {!! $item->reply_text !!}
+                <!-- timeline time label -->
+                    <div class="time-label">
+                        <span class="bg-red">{{\Carbon\Carbon::parse($date)->format('d M, Y')}}</span>
+                    </div>
+                    <!-- /.timeline-label -->
+                    <!-- timeline item -->
+                    <!-- timeline item -->
+                    @foreach($reply as $item)
+                        <div>
+                            <i class="fas fa-comments bg-gradient-blue"></i>
+                            <div class="timeline-item">
+                            <span class="time"><i
+                                    class="fas fa-clock"></i> {{$item->created_at->diffForHumans()}}</span>
+                                <h3 class="timeline-header">
+                                    <a href="#">{{$item->agent->name}}</a> replied on this Ticket</h3>
+                                <div class="timeline-body">
+                                    {!! $item->reply_text !!}
+                                </div>
                             </div>
                         </div>
-                    </div>
-            @endforeach
-        @endforeach
-        <!-- END timeline item -->
-            <div>
-                <i class="fas fa-clock bg-gray"></i>
-            </div>
+                    @endforeach
+                @endforeach
+            <!-- END timeline item -->
+                <div>
+                    <i class="fas fa-clock bg-gray"></i>
+                </div>
+            @else
+                <div class="col-12  text-center">
+                    <h4 class="badge badge-danger">Replies not found for this ticket</h4>
+                </div>
+            @endif
         </div>
+
     </div>
     <!-- /.col -->
 </div>

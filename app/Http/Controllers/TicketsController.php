@@ -96,12 +96,21 @@ class TicketsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     * @return Response
+     * @param Ticket $ticket
+     * @return JsonResponse
+     * @throws Throwable
      */
-    public function show($id)
+    public function show(Ticket $ticket)
     {
-        //
+        try {
+            $view = view('frontend.ticket_details', compact('ticket'))->render();
+
+            return response()->json(['ticket' => $view, 'status' => (bool)$ticket]);
+        } catch (ModelNotFoundException $exception) {
+            return response()->json(['message' => "Invalid Ticket Reference #", 'status' => 0], 422);
+        } catch (\Exception $exception) {
+            return response()->json(['message' => "Something went wrong.", 'status' => 0], 505);
+        }
     }
 
     /**
@@ -119,6 +128,9 @@ class TicketsController extends Controller
             ['name' => 'Add reply', 'url' => '']
         ];
 
+        // Mark ticket as Read or view status
+        $this->ticketRepository->markAsRead($ticket);
+
         return view('backend.tickets.add-reply', compact('ticket', 'page_title', 'breadcrumb'));
     }
 
@@ -133,11 +145,22 @@ class TicketsController extends Controller
     {
         $request->validate(['reply_text' => 'required']);
 
-        $reply = new TicketReply($request->only(['reply_text']));
-        $reply = $ticket->replies()->save($reply);
-        $ticket->notify(new TicketReplyNotification($reply));
+        try {
+            //Ticket Status change action
+            if ($request->filled('status')) {
+                $ticket->status = $request->status;
+                $ticket->save();
+            }
 
-        return back()->with('success', 'Reply has been successfully saved!');
+            //Add reply to tickets
+            $reply = new TicketReply($request->only(['reply_text']));
+            $reply = $ticket->replies()->save($reply);
+            $ticket->notify(new TicketReplyNotification($reply));
+
+            return back()->with('success', 'Reply has been successfully saved!');
+        } catch (\Swift_SwiftException $exception) {
+            return back()->with('warning', 'Reply has been successfully saved & Email notification couldn\'t sent!');
+        }
     }
 
     /**

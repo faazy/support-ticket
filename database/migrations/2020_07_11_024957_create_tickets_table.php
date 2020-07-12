@@ -22,6 +22,7 @@ class CreateTicketsTable extends Migration
             $table->string('phone_no', 25);
             $table->unsignedInteger('agent_id')->nullable();
             $table->unsignedTinyInteger('status')->default(0)->comment("0 => pending, 1 => opened, 2 => closed");
+            $table->dateTime('read_at')->nullable();
             $table->timestamps();
         });
     }
