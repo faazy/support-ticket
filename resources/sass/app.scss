@@ -1,0 +1,22 @@
+// Fonts
+//@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+//@import '~bootstrap/scss/bootstrap';
+
+
+.table {
+    .active {
+        td, th {
+            background: $theme-highlight-color;
+            color: $black;
+        }
+    }
+}
+
+.badge2x {
+    font-size: 1em;
+}

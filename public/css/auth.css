@@ -1,0 +1,118 @@
+body {
+  background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%) !important;
+}
+
+.card-signin {
+  border: 0;
+  border-radius: 8px;
+  -ms-box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card-signin .card-title {
+  margin-bottom: 35px;
+  font-weight: 300;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #8a9ba8;
+}
+
+.card-signin .card-body {
+  padding: 30px;
+}
+
+.card-signin .card-body .app-logo img {
+  width: 200px;
+  height: auto;
+}
+
+.card-signin .card-footer {
+  border-top: 1px solid #e5e7ec;
+  background: #ffffff;
+  -webkit-border-top-left-radius: 0px;
+  -webkit-border-top-right-radius: 0px;
+  -webkit-border-bottom-right-radius: 8px;
+  -webkit-border-bottom-left-radius: 8px;
+  -moz-border-radius-topleft: 0px;
+  -moz-border-radius-topright: 0px;
+  -moz-border-radius-bottomright: 8px;
+  -moz-border-radius-bottomleft: 8px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+/** Form Control **/
+
+.form-control {
+  min-height: 45px;
+  border: 1px solid #e5e7ec;
+  border-radius: 25px;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: #8a9ba8 !important;
+}
+
+.form-control:-moz-placeholder {
+  /* Firefox 18- */
+  color: #8a9ba8 !important;
+}
+
+.form-control::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #8a9ba8 !important;
+}
+
+.form-control:-ms-input-placeholder {
+  color: #8a9ba8 !important;
+}
+
+.input-group-text {
+  background: none;
+  border-radius: 25px;
+  border: 1px solid #e5e7ec;
+}
+
+.input-group-text i {
+  font-size: 0.875rem;
+}
+
+.input-group-text .custom-control {
+  line-height: 1;
+}
+
+.input-group-prepend .input-group-text {
+  border-right: 0;
+}
+
+.input-group-append .input-group-text {
+  border-left: 0;
+}
+
+.input-group-merge .form-control:not(:first-child) {
+  padding-left: 0.5rem;
+  border-left: 0;
+}
+
+.input-group-merge .form-control:not(:last-child) {
+  padding-right: 0;
+  border-right: 0;
+}
+
+.input-group-alternative {
+  transition: box-shadow 0.15s ease;
+}
+
+.input-group-alternative .form-control,
+.input-group-alternative .input-group-text {
+  box-shadow: none;
+}
+
+.focused .input-group-alternative {
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+}
+

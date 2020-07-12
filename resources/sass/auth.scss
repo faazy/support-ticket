@@ -1,0 +1,103 @@
+@import "variables";
+@import "~bootstrap/scss/mixins";
+@import "mixins";
+
+body {
+    background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%) !important;
+}
+
+
+.card-signin {
+    border: 0;
+    @include border-radius(8px);
+    @include box-shadow(0px, 0px, 30px, rgba(0, 0, 0, 0.1));
+
+    .card-title {
+        margin-bottom: 35px;
+        font-weight: 300;
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: $theme-grey-color;
+    }
+
+    .card-body {
+        padding: 30px;
+
+        .app-logo {
+            img {
+                width: 200px;
+                height: auto;
+            }
+
+        }
+    }
+
+    .card-footer {
+        border-top: 1px solid $theme-light-grey;
+        background: $theme-white-color;
+        @include border-radius-separate(0px, 0px, 8px, 8px);
+    }
+}
+
+
+/** Form Control **/
+.form-control {
+    min-height: 45px;
+    border: 1px solid $theme-light-grey;
+    @include border-radius(25px);
+
+    @include placeholder {
+        color: $theme-grey-color !important;
+    }
+
+}
+
+.input-group > .custom-select:not(:first-child), .input-group > .form-control:not(:first-child) {
+    //@include border-radius(25px);
+}
+
+.input-group-text {
+    background: none;
+    @include border-radius(25px);
+    border: 1px solid $theme-light-grey;
+}
+
+.input-group-text i {
+    font-size: .875rem;
+}
+
+.input-group-text .custom-control {
+    line-height: 1;
+}
+
+.input-group-prepend .input-group-text {
+    border-right: 0;
+}
+
+.input-group-append .input-group-text {
+    border-left: 0;
+}
+
+.input-group-merge .form-control:not(:first-child) {
+    padding-left: 0.5rem;
+    border-left: 0;
+}
+
+.input-group-merge .form-control:not(:last-child) {
+    padding-right: 0;
+    border-right: 0;
+}
+
+.input-group-alternative {
+    transition: box-shadow .15s ease;
+}
+
+.input-group-alternative .form-control,
+.input-group-alternative .input-group-text {
+    box-shadow: none;
+}
+
+.focused .input-group-alternative {
+    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08) !important;
+}

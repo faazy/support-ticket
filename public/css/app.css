@@ -1,0 +1,10 @@
+.table .active td,
+.table .active th {
+  background: linear-gradient(180deg, #fff3e040 0%, #ffe08280 100%);
+  color: #000;
+}
+
+.badge2x {
+  font-size: 1em;
+}
+
