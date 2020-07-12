@@ -43,9 +43,11 @@
                                     <label for="status"></label>
                                     <select name="status" id="status" class="form-control"
                                             onchange="$('#searchForm').submit();">
-                                        <option value="" {{request()->filled('status')?:'selected'}}>All</option>
-                                        <option value="0" {{request()->status == 0 ?'selected':''}}>Pending</option>
-                                        <option value="1" {{request()->status == 1 ?'selected':''}}>Closed</option>
+                                        <option value="" {{request()->get('status')?:'selected'}}>All</option>
+                                        <option value="0" {{request()->get('status') == "0" ?'selected':''}}>Pending
+                                        </option>
+                                        <option value="1" {{request()->get('status') == 1 ?'selected':''}}>Closed
+                                        </option>
                                     </select>
                                 </div>
                             </form>

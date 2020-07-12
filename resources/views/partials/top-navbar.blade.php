@@ -51,6 +51,14 @@
                         </li>
                     @endif
                 @else
+                    <li class="nav-item mr-md-2 mb-2 mb-md-0">
+                        <a href="{{ route('home') }}">
+                            <button type="button" class="btn btn-block btn-outline-secondary">
+                                <i class="fas fa-tachometer-alt"></i>
+                                Dashboard
+                            </button>
+                        </a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

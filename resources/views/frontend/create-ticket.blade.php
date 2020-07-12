@@ -145,6 +145,7 @@
                         event.stopPropagation();
 
                         if (form.checkValidity()) {
+                            $('form').find('button').prop('disabled', true);
                             postData();
                         }
 
@@ -182,6 +183,9 @@
                         text: 'Something went wrong!',
                         showCloseButton: true,
                     })
+                })
+                .always(reps => {
+                    $('form').find('button').prop('disabled', false);
                 });
         }
 

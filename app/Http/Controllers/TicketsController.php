@@ -32,6 +32,8 @@ class TicketsController extends Controller
     public function __construct(TicketRepository $ticketRepository)
     {
         $this->ticketRepository = $ticketRepository;
+
+        $this->middleware('auth')->except(['search', 'store', 'create']);
     }
 
     /**
@@ -87,7 +89,6 @@ class TicketsController extends Controller
 
             return response()->json(['ticket' => $ticket, 'message' => 'Ticket details have been saved.', 'status' => 1]);
         } catch (Exception $exception) {
-            dd($exception);
             return response()->json(['ticket' => null, 'message' => 'Something went wrong. Please try again.', 'status' => 0]);
         }
     }

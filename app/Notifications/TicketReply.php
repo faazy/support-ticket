@@ -56,6 +56,15 @@ class TicketReply extends Notification
             ->line(new HtmlString($this->ticket_reply->reply_text))
             ->action('View Ticket Status', url('/'))
             ->line('Thank you for using our application!');
+//            ->withSwiftMessage(function ($message) {
+//                $message->getHeaders()
+//                    ->addTextHeader('In-Reply-To', '3a05464fb2eda5b9d509948ffc98c27d@127.0.0.1');
+//                $message->getHeaders()
+//                    ->addTextHeader('References', '3a05464fb2eda5b9d509948ffc98c27d@127.0.0.1');
+//                $message
+//                    ->setSender('hello@example.com')
+//                    ->setReplyTo('3a05464fb2eda5b9d509948ffc98c27d@127.0.0.1');
+//            });
     }
 
     /**
