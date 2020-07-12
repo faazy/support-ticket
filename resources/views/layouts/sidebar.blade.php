@@ -38,6 +38,13 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item border-top mt-5">
+                    <a href="{{route('logout')}}" class="nav-link" onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p> Logout</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
